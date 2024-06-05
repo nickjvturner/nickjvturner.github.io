@@ -1,9 +1,9 @@
 {
-    "version": "2024.22.35",
+    "version": "2024.23.5",
     "changelog": [
         "implemented update mechanism",
         "comment 2",
         "comment 3"
     ],
-    "download_url": "https://nickjvturner.github.io/foldermolder/updates/FolderMolder-2024.22.35.dmg"
+    "download_url": "https://nickjvturner.github.io/foldermolder/updates/FolderMolder-2024.23.5.dmg"
 }
