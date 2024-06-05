@@ -1,0 +1,9 @@
+{
+    "version": "2024.23.3",
+    "changelog": [
+        "implemented update mechanism",
+        "comment 2",
+        "comment 3"
+    ],
+    "download_url": "https://github.com/nickjvturner/nickjvturner.github.io/tree/main/foldermolder/updates/FolderMolder-2024.23.3.dmg"
+}
