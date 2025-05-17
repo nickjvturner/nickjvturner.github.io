@@ -1,45 +1,21 @@
 {
-    "version": "2025.20.6",
+    "version": "2025.20.6.2",
     "changelog": [
-        "sixth version bump"
+        "test pre-release"
     ],
-    "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.20.6.dmg",
+    "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.20.6.4.dmg",
     "version_history": [
         {
             "version": "2025.6.6",
             "date": "2025-02-08T22:50:26.695756",
-            "comment": "second version bump",
+            "comment": "proof of concept for versioning",
             "download_url": "https://nickjvturner.github.io/imageRAM/updates/imageRAM-2025.6.6.dmg"
         },
         {
-            "version": "2025.6.6.1",
-            "date": "2025-02-08T22:56:34.842750",
-            "comment": "third version bump",
-            "download_url": "https://nickjvturner.github.io/imageRAM/updates/imageRAM-2025.6.6.1.dmg"
-        },
-        {
-            "version": "2025.6.6.2",
-            "date": "2025-02-08T22:58:50.208886",
-            "comment": "fourth version bump",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/v2025.6.6.2/imageRAM_v2025.6.6.2.dmg"
-        },
-        {
-            "version": "2025.6.6.3",
-            "date": "2025-02-08T22:59:54.170298",
-            "comment": "fifth version bump",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/v2025.6.6.3/imageRAM_v2025.6.6.3.dmg"
-        },
-        {
-            "version": "2025.6.6.4",
-            "date": "2025-02-08T23:01:03.453487",
-            "comment": "sixth version bump",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.6.6.4.dmg"
-        },
-        {
-            "version": "2025.6.6.5",
-            "date": "2025-05-17T15:25:55.296300",
-            "comment": "sixth version bump",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.6.6.5.dmg"
+            "version": "2025.20.1",
+            "date": "2025-05-17T15:47:30.035469+00:00",
+            "comment": "test pre-release",
+            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.20.6.3.dmg"
         }
     ]
 }
