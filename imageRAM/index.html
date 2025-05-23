@@ -50,6 +50,28 @@
         <ul>
             <li>test pre-release</li>
         </ul>
-    </div>
+    </div> <!-- end of changelog -->
+
+    <script>
+    fetch('application_version.json')
+      .then(response => response.json())
+      .then(data => {
+        const button = document.querySelector('.button');
+        button.href = data.download_url;
+        button.textContent = `Download Latest Version (${data.version})`;
+
+        const changelogList = document.querySelector('.changelog ul');
+        changelogList.innerHTML = '';
+        data.changelog.forEach(entry => {
+          const li = document.createElement('li');
+          li.textContent = entry;
+          changelogList.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading version info:', error);
+      });
+    </script>
+
 </body>
 </html>
