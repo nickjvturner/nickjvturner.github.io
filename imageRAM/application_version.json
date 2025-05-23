@@ -1,9 +1,9 @@
 {
-    "version": "2025.21.5",
+    "version": "2025.21.5.1",
     "changelog": [
         "pre-release test-1"
     ],
-    "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.21.5.dmg",
+    "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.21.5.1.dmg",
     "version_history": [
         {
             "version": "2025.6.6",
@@ -22,6 +22,12 @@
             "date": "2025-05-23T15:51:55.583820+00:00",
             "comment": "pre-release test-1",
             "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.20.6.4.dmg"
+        },
+        {
+            "version": "2025.21.5",
+            "date": "2025-05-23T16:02:48.895014+00:00",
+            "comment": "pre-release test-1",
+            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.21.5.dmg"
         }
     ]
 }
