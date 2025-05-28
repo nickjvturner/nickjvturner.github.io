@@ -1,7 +1,7 @@
 {
-    "version": "2025.21.5.5",
+    "version": "2025.21.7.4",
     "changelog": [
-        "pre-release test-4"
+        "notarisation test"
     ],
     "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.21.5.5.dmg",
     "version_history": [
