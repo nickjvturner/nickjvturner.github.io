@@ -1,63 +1,37 @@
 {
-    "version": "2025.22.4",
+    "version": "2025.23.3",
     "changelog": [
-        "initial alpha release for testing"
+        "Instance name - visible within LemonSqueezy is now unhashed, using computer name.'",
+        "Input boxes changed to text controls for consistent look.",
+        "Input box labels updated.",
+        "Option checkboxes made persistent between launches, exit action captures current state.",
+        "App bundled as universal binary to support both Intel and Apple Silicon Macs."
     ],
-    "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.22.4.dmg",
+    "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.23.3.dmg",
     "version_history": [
         {
             "version": "2025.6.6",
             "date": "2025-02-08T22:50:26.695756",
-            "comment": "proof of concept for versioning",
+            "comment": "Proof of concept for versioning",
             "download_url": "https://nickjvturner.github.io/imageRAM/updates/imageRAM-2025.6.6.dmg"
         },
         {
             "version": "2025.20.1",
             "date": "2025-05-17T15:47:30.035469+00:00",
-            "comment": "test pre-release",
+            "comment": "Test for version bumping",
             "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.20.6.3.dmg"
-        },
-        {
-            "version": "2025.20.6.2",
-            "date": "2025-05-23T15:51:55.583820+00:00",
-            "comment": "pre-release test-1",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.20.6.4.dmg"
-        },
-        {
-            "version": "2025.21.5",
-            "date": "2025-05-23T16:02:48.895014+00:00",
-            "comment": "pre-release test-1",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.21.5.dmg"
-        },
-        {
-            "version": "2025.21.5.1",
-            "date": "2025-05-23T16:18:13.920640+00:00",
-            "comment": "pre-release test-2",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.21.5.1.dmg"
-        },
-        {
-            "version": "2025.21.5.2",
-            "date": "2025-05-23T18:47:39.095844+00:00",
-            "comment": "pre-release test-3",
-            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.21.5.2.dmg"
-        },
-        {
-            "version": "2025.21.5.3",
-            "date": "2025-05-23T21:21:18.084138+00:00",
-            "comment": "pre-release test-4",
-            "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.21.5.3.dmg"
-        },
-        {
-            "version": "2025.21.5.4",
-            "date": "2025-05-23T21:22:02.940084+00:00",
-            "comment": "pre-release test-4",
-            "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.21.5.4.dmg"
         },
         {
             "version": "2025.21.7.4",
             "date": "2025-05-29T19:20:13.733024+00:00",
-            "comment": "initial alpha release for testing",
+            "comment": "Initial alpha release for testing",
             "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.21.7.4.dmg"
+        },
+        {
+            "version": "2025.22.4",
+            "date": "2025-06-04T08:35:04.360928+00:00",
+            "comment": "Instance name - visible within LemonSqueezy is now unhashed, using computer name.'\n        Input boxes changed to text controls for consistent look.\n        Input box labels updated.\n        Option checkboxes made persistent between launches, exit action captures current state.",
+            "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.22.4.dmg"
         }
     ]
 }
