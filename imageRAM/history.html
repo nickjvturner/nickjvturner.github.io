@@ -52,9 +52,17 @@
           container.className = 'release-entry';
 
           const title = document.createElement('h2');
-          const date = new Date(entry.date).toLocaleDateString();
-          title.textContent = `${entry.version} – ${date}`;
+          title.textContent = entry.version;
           container.appendChild(title);
+
+          const dateText = document.createElement('div');
+          const dateObj = new Date(entry.date);
+          const formattedDate = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+          dateText.textContent = formattedDate;
+          dateText.style.fontSize = '0.85em';
+          dateText.style.color = '#666';
+          dateText.style.marginTop = '0.25em';
+          container.appendChild(dateText);
 
           const ul = document.createElement('ul');
           entry.comment.split('\n').forEach(line => {
