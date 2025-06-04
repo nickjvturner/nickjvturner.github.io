@@ -47,7 +47,15 @@
       .then(response => response.json())
       .then(data => {
         const historyDiv = document.getElementById('history');
-        data.version_history.reverse().forEach(entry => {
+        // Insert the current release at the top of the history
+        const currentRelease = {
+          version: data.version,
+          date: data.date,
+          comment: data.changelog
+        };
+        data.version_history.push(currentRelease);
+        // Iterate in reverse order so current release appears at the top
+        [...data.version_history].reverse().forEach(entry => {
           const container = document.createElement('div');
           container.className = 'release-entry';
 
@@ -65,11 +73,13 @@
           container.appendChild(dateText);
 
           const ul = document.createElement('ul');
-          entry.comment.split('\n').forEach(line => {
-            const li = document.createElement('li');
-            li.textContent = line.trim();
-            ul.appendChild(li);
-          });
+          if (Array.isArray(entry.comment)) {
+            entry.comment.forEach(line => {
+              const li = document.createElement('li');
+              li.textContent = line.trim();
+              ul.appendChild(li);
+            });
+          }
 
           container.appendChild(ul);
           historyDiv.appendChild(container);
