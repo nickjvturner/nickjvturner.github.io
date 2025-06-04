@@ -1,7 +1,7 @@
 {
     "version": "2025.23.3",
     "changelog": [
-        "Instance name - visible within LemonSqueezy is now unhashed, using computer name.'",
+        "Instance name - visible within LemonSqueezy is now unhashed, using computer name.",
         "Input boxes changed to text controls for consistent look.",
         "Input box labels updated.",
         "Option checkboxes made persistent between launches, exit action captures current state.",

@@ -31,12 +31,33 @@
         .button:hover {
             background-color: #0056b3;
         }
-        .changelog {
+        .changelog-details {
             margin-top: 2em;
-            max-width: 400px;
-            text-align: center;
-            color: #555;
-            font-size: 0.9em;
+            max-width: 800px;
+            text-align: left;
+            background: #ffffff;
+            padding: 1em 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        .changelog-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05em;
+            margin-bottom: 0.5em;
+        }
+
+        .changelog-details ul {
+            padding-left: 1.2em;
+            margin-top: 0.5em;
+        }
+
+        .changelog-details li {
+            margin-bottom: 0.4em;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -45,12 +66,12 @@
     <a class="button" href="https://github.com/nickjvturner/imageRAM" download>
         Download Latest Version
     </a>
-    <div class="changelog">
-        <p><strong>Release Comments:</strong></p>
-        <ul>
-            <li>Honestly, it's very good?!</li>
-        </ul>
-    </div> <!-- end of changelog -->
+    <div class="changelog-details">
+      <p><strong>Latest Update:</strong></p>
+      <ul id="latest-changelog">
+        <li>Loading...</li>
+      </ul>
+    </div>
 
     <script>
     fetch('application_version.json')
@@ -60,13 +81,17 @@
         button.href = data.download_url;
         button.textContent = `Download Latest Version (${data.version})`;
 
-        const changelogList = document.querySelector('.changelog ul');
-        changelogList.innerHTML = '';
-        data.changelog.forEach(entry => {
-          const li = document.createElement('li');
-          li.textContent = entry;
-          changelogList.appendChild(li);
-        });
+        const latestList = document.getElementById('latest-changelog');
+        latestList.innerHTML = '';
+
+        const latestVersion = data.version_history[data.version_history.length - 1];
+        if (latestVersion && latestVersion.comment) {
+          latestVersion.comment.split('\n').forEach(line => {
+            const li = document.createElement('li');
+            li.textContent = line.trim();
+            latestList.appendChild(li);
+          });
+        }
       })
       .catch(error => {
         console.error('Error loading version info:', error);
