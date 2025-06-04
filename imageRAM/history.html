@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>imageRAM – Full Release History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #f8f9fa;
+      padding: 2em;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    .release-entry {
+      background: #fff;
+      padding: 1em 1.5em;
+      margin-bottom: 1.5em;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .release-entry h2 {
+      margin: 0 0 0.5em;
+      font-size: 1.1em;
+    }
+    .release-entry ul {
+      padding-left: 1.2em;
+      margin: 0.5em 0 0;
+    }
+    .release-entry li {
+      margin-bottom: 0.4em;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Release History</h1>
+  <div id="history"></div>
+
+  <script>
+    fetch('application_version.json')
+      .then(response => response.json())
+      .then(data => {
+        const historyDiv = document.getElementById('history');
+        data.version_history.reverse().forEach(entry => {
+          const container = document.createElement('div');
+          container.className = 'release-entry';
+
+          const title = document.createElement('h2');
+          const date = new Date(entry.date).toLocaleDateString();
+          title.textContent = `${entry.version} – ${date}`;
+          container.appendChild(title);
+
+          const ul = document.createElement('ul');
+          entry.comment.split('\n').forEach(line => {
+            const li = document.createElement('li');
+            li.textContent = line.trim();
+            ul.appendChild(li);
+          });
+
+          container.appendChild(ul);
+          historyDiv.appendChild(container);
+        });
+      })
+      .catch(err => {
+        document.getElementById('history').textContent = 'Failed to load version history.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
