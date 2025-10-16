@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download BadgerWiFi-Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            margin-bottom: 0.5em;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 1em 2em;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.2s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .changelog-details {
+            margin-top: 2em;
+            max-width: 800px;
+            text-align: left;
+            background: #ffffff;
+            padding: 1em 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        .changelog-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05em;
+            margin-bottom: 0.5em;
+        }
+
+        .changelog-details ul {
+            padding-left: 1.2em;
+            margin-top: 0.5em;
+        }
+
+        .changelog-details li {
+            margin-bottom: 0.4em;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <h1>imageRAM</h1>
+    <a class="button" href="https://github.com/nickjvturner/badgerwifitools" download>
+        Download Latest Version
+    </a>
+    <div class="changelog-details">
+      <p><strong>Release Notes:</strong></p>
+      <ul id="latest-changelog">
+        <li>Loading...</li>
+      </ul>
+    </div>
+
+    <script>
+fetch('application_version.json')
+  .then(response => response.json())
+  .then(data => {
+    const button = document.querySelector('.button');
+    button.href = data.download_url;
+    button.textContent = `Download Latest Version (${data.version})`;
+
+    const latestList = document.getElementById('latest-changelog');
+    latestList.innerHTML = '';
+
+    if (Array.isArray(data.changelog)) {
+      data.changelog.forEach(line => {
+        const li = document.createElement('li');
+        li.textContent = line.trim();
+        latestList.appendChild(li);
+      });
+    }
+  })
+  .catch(error => {
+    console.error('Error loading version info:', error);
+  });
+</script>
+
+    <p><a href="history.html" style="margin-top: 0.5em; display: inline-block; font-size: 0.1em; color: #007bff;">View Full Release History</a></p>
+
+</body>
+</html>

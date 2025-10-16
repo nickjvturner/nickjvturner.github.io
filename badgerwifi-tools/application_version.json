@@ -1,0 +1,46 @@
+{
+    "version": "2025.42.4",
+    "date": "2025-10-16T10:07:29.450244+00:00",
+    "changelog": [
+        "test line 91",
+        "test line 92"
+    ],
+    "download_url": "https://nickjvturner.github.io/badgerwifi-tools/releases/download/BadgerWiFi-Tools-2025.42.4.dmg",
+    "version_history": [
+        {
+            "version": "2025.6.6",
+            "date": "2025-02-08T22:50:26.695756",
+            "comment": [
+                "Proof of concept for versioning"
+            ],
+            "download_url": "https://nickjvturner.github.io/imageRAM/updates/imageRAM-2025.6.6.dmg"
+        },
+        {
+            "version": "2025.20.1",
+            "date": "2025-05-17T15:47:30.035469+00:00",
+            "comment": [
+                "Test for version bumping"
+            ],
+            "download_url": "https://github.com/nickjvturner/imageRAM/releases/download/imageRAM_v2025.20.6.3.dmg"
+        },
+        {
+            "version": "2025.22.4",
+            "date": "2025-05-29T19:20:13.733024+00:00",
+            "comment": [
+                "Initial alpha release for testing"
+            ],
+            "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.22.4.dmg"
+        },
+        {
+            "version": "2025.23.3",
+            "date": "2025-06-04T08:35:04.360928+00:00",
+            "comment": [
+                "Instance name - visible within LemonSqueezy is now unhashed, using computer name.",
+                "Input boxes changed to text controls for consistent look.",
+                "Input box labels updated.",
+                "Option checkboxes made persistent between launches, exit action captures current state."
+            ],
+            "download_url": "https://nickjvturner.github.io/imageRAM/releases/download/imageRAM-2025.23.3.dmg"
+        }
+    ]
+}
