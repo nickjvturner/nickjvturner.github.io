@@ -4,13 +4,13 @@
     "changelog": [
         "initial alpha release for 'friendly' testing"
     ],
-    "download_url": "https://nickjvturner.github.io/badgerwifi-tools/releases/download/BadgerWiFi-Tools-2025.43.2.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg",
     "version_history": [
         {
             "version": "2025.6.6",
             "date": "2025-02-08T22:50:26.695756",
             "comment": [
-                "imageRAM Proof of concept for versioning"
+                "Proof of concept for versioning"
             ],
             "download_url": ""
         }
