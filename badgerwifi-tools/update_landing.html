@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BadgerWiFi-Tools — Download</title>
+  <style>
+    :root { font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { margin: 0; display: grid; min-height: 100svh; place-items: center; padding: 24px; }
+    .card { max-width: 720px; width: 100%; border: 1px solid hsl(0 0% 80% / .4);
+            border-radius: 16px; padding: 24px; backdrop-filter: blur(6px); }
+    h1 { margin: 0 0 .25rem; font-weight: 700; font-size: 1.5rem; }
+    .muted { color: #666; margin: 0 0 1rem; }
+    .grid { display: grid; gap: 12px; }
+    .btn { appearance: none; border: 1px solid transparent; padding: 10px 14px; border-radius: 10px;
+           font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-ghost   { border-color: #ccc; color: inherit; background: transparent; }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    details { border: 1px dashed #ccc; padding: 10px 12px; border-radius: 8px; }
+    summary { cursor: pointer; font-weight: 600; }
+    .os-note { padding: 10px 12px; border-left: 4px solid #2563eb; background: hsl(220 90% 60% / .07); border-radius: 6px; }
+    footer { margin-top: 1rem; font-size: .9rem; color: #666; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Your download is starting…</h1>
+    <p class="muted">If it doesn’t begin automatically within a few seconds, use the button below.</p>
+
+    <div class="grid" style="margin: 12px 0 16px;">
+      <a id="downloadBtn" class="btn btn-primary" href="#" download>Download BadgerWiFi-Tools</a>
+      <div><small class="mono">Version: <span id="ver">–</span></small></div>
+      <div><small class="mono">SHA-256: <span id="sha">–</span></small></div>
+    </div>
+
+    <div class="grid">
+      <div class="os-note" id="macHelp" hidden>
+        <strong>macOS:</strong> Open the <span class="mono">.dmg</span>, then drag the app to <strong>Applications</strong>.<br/>
+        If macOS warns it’s from an unidentified developer, right-click the app → <strong>Open</strong> → <strong>Open</strong>.
+      </div>
+      <div class="os-note" id="winHelp" hidden>
+        <strong>Windows:</strong> Run the installer and follow the prompts. If you see SmartScreen, choose <strong>More info</strong> → <strong>Run anyway</strong>.
+      </div>
+    </div>
+
+    <details style="margin-top:12px;">
+      <summary>Verify the download (recommended)</summary>
+      <p>On macOS:</p>
+      <pre class="mono">shasum -a 256 /path/to/BadgerWiFi-Tools.dmg</pre>
+      <p>On Windows (PowerShell):</p>
+      <pre class="mono">Get-FileHash .\BadgerWiFi-Tools.exe -Algorithm SHA256</pre>
+      <p>Ensure the hash matches the SHA-256 shown above.</p>
+    </details>
+
+    <footer>
+      Problems? <a href="mailto:nick@badgerwifi.co.uk">Contact support</a>.
+    </footer>
+  </main>
+
+  <script>
+    // Get ?file=…&v=…&sha256=… from the URL
+    const params = new URLSearchParams(location.search);
+    const file = params.get('file');
+    const v = params.get('v') || 'latest';
+    const sha = params.get('sha256') || 'n/a';
+
+    // Populate UI
+    const btn = document.getElementById('downloadBtn');
+    const ver = document.getElementById('ver');
+    const shaEl = document.getElementById('sha');
+
+    if (file) btn.href = file;
+    ver.textContent = v;
+    shaEl.textContent = sha;
+
+    // Show OS-specific notes
+    const ua = navigator.userAgent.toLowerCase();
+    const isMac = ua.includes('mac os x') || ua.includes('macintosh');
+    const isWin = ua.includes('windows');
+    document.getElementById('macHelp').hidden = !isMac;
+    document.getElementById('winHelp').hidden = !isWin;
+
+    // Auto-trigger download after a small delay
+    if (file) {
+      setTimeout(() => {
+        // Prefer programmatic click to preserve filename and Content-Disposition
+        btn.click();
+      }, 700);
+    }
+  </script>
+</body>
+</html>
