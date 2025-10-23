@@ -32,27 +32,18 @@
     <div class="grid" style="margin: 12px 0 16px;">
       <a id="downloadBtn" class="btn btn-primary" href="#" download>Download BadgerWiFi-Tools</a>
       <div><small class="mono">Version: <span id="ver">–</span></small></div>
-      <div><small class="mono">SHA-256: <span id="sha">–</span></small></div>
     </div>
 
     <div class="grid">
       <div class="os-note" id="macHelp" hidden>
         <strong>macOS:</strong> Open the <span class="mono">.dmg</span>, then drag the app to <strong>Applications</strong>.<br/>
-        If macOS warns it’s from an unidentified developer, right-click the app → <strong>Open</strong> → <strong>Open</strong>.
+        This is a manual process for the moment...
       </div>
       <div class="os-note" id="winHelp" hidden>
         <strong>Windows:</strong> Run the installer and follow the prompts. If you see SmartScreen, choose <strong>More info</strong> → <strong>Run anyway</strong>.
       </div>
     </div>
 
-    <details style="margin-top:12px;">
-      <summary>Verify the download (recommended)</summary>
-      <p>On macOS:</p>
-      <pre class="mono">shasum -a 256 /path/to/BadgerWiFi-Tools.dmg</pre>
-      <p>On Windows (PowerShell):</p>
-      <pre class="mono">Get-FileHash .\BadgerWiFi-Tools.exe -Algorithm SHA256</pre>
-      <p>Ensure the hash matches the SHA-256 shown above.</p>
-    </details>
 
     <footer>
       Problems? <a href="mailto:nick@badgerwifi.co.uk">Contact support</a>.
@@ -60,20 +51,14 @@
   </main>
 
   <script>
-    // Get ?file=…&v=…&sha256=… from the URL
+    // Get optional overrides from the URL (?file=…&v=…)
     const params = new URLSearchParams(location.search);
-    const file = params.get('file');
-    const v = params.get('v') || 'latest';
-    const sha = params.get('sha256') || 'n/a';
+    const fileOverride = params.get('file');
+    const versionOverride = params.get('v');
 
     // Populate UI
     const btn = document.getElementById('downloadBtn');
     const ver = document.getElementById('ver');
-    const shaEl = document.getElementById('sha');
-
-    if (file) btn.href = file;
-    ver.textContent = v;
-    shaEl.textContent = sha;
 
     // Show OS-specific notes
     const ua = navigator.userAgent.toLowerCase();
@@ -82,13 +67,46 @@
     document.getElementById('macHelp').hidden = !isMac;
     document.getElementById('winHelp').hidden = !isWin;
 
-    // Auto-trigger download after a small delay
-    if (file) {
-      setTimeout(() => {
-        // Prefer programmatic click to preserve filename and Content-Disposition
-        btn.click();
-      }, 700);
+    let autoTriggered = false;
+
+    const isSafeDownload = url => {
+      try {
+        const parsed = new URL(url, location.origin);
+        return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+      } catch {
+        return false;
+      }
+    };
+
+    const setDownload = (url, version) => {
+      if (version) ver.textContent = version;
+      if (url && isSafeDownload(url)) {
+        btn.href = url;
+        if (!autoTriggered) {
+          autoTriggered = true;
+          setTimeout(() => btn.click(), 700);
+        }
+      }
+    };
+
+    // Apply immediate overrides before fetching metadata
+    if (fileOverride) {
+      setDownload(fileOverride, versionOverride || 'latest');
+    } else if (versionOverride) {
+      ver.textContent = versionOverride;
     }
+
+    // Load the latest metadata to mirror index.html behaviour
+    fetch('application_version.json')
+      .then(response => response.json())
+      .then(data => {
+        const downloadUrl = fileOverride || data.download_url;
+        const version = versionOverride || data.version || 'latest';
+        setDownload(downloadUrl, version);
+      })
+      .catch(err => {
+        console.error('Failed to load application_version.json', err);
+      });
   </script>
 </body>
 </html>
