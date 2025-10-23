@@ -97,7 +97,7 @@
     }
 
     // Load the latest metadata to mirror index.html behaviour
-    fetch('application_version.json')
+    fetch('../application_version.json')
       .then(response => response.json())
       .then(data => {
         const downloadUrl = fileOverride || data.download_url;
