@@ -5,7 +5,7 @@
         "CRITICAL BUG",
         "FUNDAMENTAL FUNCTIONALITY addressed, restoring bundled app version to 'usable'"
     ],
-    "download_url": "https://nickjvturner.github.io/badgerwifi-tools/releases/download/BadgerWiFi-Tools-2025.43.4.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.dmg",
     "version_history": [
         {
             "version": "2025.6.6",
