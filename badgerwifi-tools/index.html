@@ -47,7 +47,7 @@
             border-radius: 6px 0 0 6px;
             min-width: 240px;
         }
-        .split-toggle {
+        .download-controls .split-toggle {
             width: 3em;
             padding: 0;
             display: grid;
@@ -209,6 +209,8 @@ const latestList = document.getElementById('latest-changelog');
 
 primaryButton.style.borderTopRightRadius = '6px';
 primaryButton.style.borderBottomRightRadius = '6px';
+menuToggle.style.borderTopRightRadius = '6px';
+menuToggle.style.borderBottomRightRadius = '6px';
 
 const closeMenu = () => {
   if (menu.hidden) return;
@@ -225,6 +227,8 @@ const renderMenu = (items, version) => {
     menuToggle.setAttribute('aria-expanded', 'false');
     primaryButton.style.borderTopRightRadius = '6px';
     primaryButton.style.borderBottomRightRadius = '6px';
+    menuToggle.style.borderTopRightRadius = '6px';
+    menuToggle.style.borderBottomRightRadius = '6px';
     return;
   }
 
@@ -243,6 +247,8 @@ const renderMenu = (items, version) => {
   menuToggle.setAttribute('aria-expanded', 'false');
   primaryButton.style.borderTopRightRadius = '0';
   primaryButton.style.borderBottomRightRadius = '0';
+  menuToggle.style.borderTopRightRadius = '6px';
+  menuToggle.style.borderBottomRightRadius = '6px';
 };
 
 menuToggle.addEventListener('click', event => {
