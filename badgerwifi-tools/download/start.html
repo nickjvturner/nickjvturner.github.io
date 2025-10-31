@@ -325,7 +325,7 @@
       menuToggle.setAttribute('aria-expanded', 'false');
     };
 
-    const renderMenu = (items, version) => {
+    const renderMenu = (items) => {
       menu.innerHTML = '';
 
       if (!items.length) {
@@ -344,7 +344,7 @@
         link.href = item.url;
         link.setAttribute('download', '');
         link.setAttribute('role', 'menuitem');
-        link.textContent = version ? `${item.label} (${version})` : item.label;
+        link.textContent = item.label;
         link.addEventListener('click', () => closeMenu());
         menu.appendChild(link);
       });
@@ -398,7 +398,7 @@
 
       btn.href = download.url;
       btn.setAttribute('download', '');
-      btn.textContent = version ? `${download.label} (${version})` : download.label;
+      btn.textContent = download.label || 'Download';
 
       if (auto && !autoTriggered) {
         autoTriggered = true;
@@ -420,8 +420,8 @@
       .then(response => response.json())
       .then(data => {
         const downloads = data.downloads || {};
-        const macDownload = normaliseDownload(downloads.mac, 'Download for macOS (.dmg)');
-        const windowsDownload = normaliseDownload(downloads.windows, 'Download for Windows (.msi)');
+        const macDownload = normaliseDownload(downloads.mac, 'Download for macOS');
+        const windowsDownload = normaliseDownload(downloads.windows, 'Download for Windows');
         const fallbackDownload = data.download_url
           ? normaliseDownload({ url: data.download_url, label: 'Download latest' }, 'Download latest')
           : null;
@@ -442,7 +442,7 @@
         setPrimaryDownload(primary, version, { auto: !overrideDownload });
 
         const alternates = collectAlternates(primary, [macDownload, windowsDownload, fallbackDownload]);
-        renderMenu(alternates, version);
+        renderMenu(alternates);
       })
       .catch(err => {
         console.error('Failed to load application_version.json', err);

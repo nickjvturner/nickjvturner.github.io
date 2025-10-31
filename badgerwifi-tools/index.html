@@ -240,7 +240,8 @@
   <main class="card">
     <div class="supporting">
       <h1>BadgerWiFi-Tools</h1>
-      <p class="muted">Grab the latest build for macOS or Windows.</p>
+      <p class="muted">Current release: <span id="versionTag">–</span></p>
+      <p class="muted" id="releaseMeta"></p>
     </div>
 
     <div class="split-control" id="downloadControls">
@@ -296,7 +297,7 @@ const normaliseDownload = (entry, fallbackLabel) => {
   return null;
 };
 
-const applyButton = (button, download, version, defaultLabel) => {
+const applyButton = (button, download, defaultLabel) => {
   if (!download || !isSafeDownload(download.url)) {
     button.href = '#';
     button.removeAttribute('download');
@@ -307,7 +308,7 @@ const applyButton = (button, download, version, defaultLabel) => {
   button.href = download.url;
   button.setAttribute('download', '');
   const text = download.label || defaultLabel;
-  button.textContent = version ? `${text} (${version})` : text;
+  button.textContent = text;
 };
 
 const collectAlternates = (primary, candidates) => {
@@ -329,6 +330,8 @@ const menuToggle = document.getElementById('downloadMenuToggle');
 const menu = document.getElementById('downloadMenu');
 const downloadControls = document.getElementById('downloadControls');
 const latestList = document.getElementById('latest-changelog');
+const versionTag = document.getElementById('versionTag');
+const releaseMeta = document.getElementById('releaseMeta');
 
 const defaultRadius = '12px';
 primaryButton.style.borderTopRightRadius = defaultRadius;
@@ -342,7 +345,7 @@ const closeMenu = () => {
   menuToggle.setAttribute('aria-expanded', 'false');
 };
 
-const renderMenu = (items, version) => {
+const renderMenu = items => {
   menu.innerHTML = '';
 
   if (!items.length) {
@@ -361,7 +364,7 @@ const renderMenu = (items, version) => {
     link.href = item.url;
     link.setAttribute('download', '');
     link.setAttribute('role', 'menuitem');
-    link.textContent = version ? `${item.label} (${version})` : item.label;
+    link.textContent = item.label;
     link.addEventListener('click', () => closeMenu());
     menu.appendChild(link);
   });
@@ -404,10 +407,10 @@ fetch('application_version.json')
   .then(response => response.json())
   .then(data => {
     const downloads = data.downloads || {};
-    const macDownload = normaliseDownload(downloads.mac, 'Download for macOS (.dmg)');
-    const windowsDownload = normaliseDownload(downloads.windows, 'Download for Windows (.msi)');
+    const macDownload = normaliseDownload(downloads.mac, 'Download for macOS');
+    const windowsDownload = normaliseDownload(downloads.windows, 'Download for Windows');
     const fallbackDownload = data.download_url
-      ? normaliseDownload({ url: data.download_url, label: 'Download latest' }, 'Download latest')
+      ? normaliseDownload({ url: data.download_url, label: 'Download' }, 'Download')
       : null;
 
     const platform = detectPlatform();
@@ -421,10 +424,22 @@ fetch('application_version.json')
       primary = macDownload || windowsDownload || fallbackDownload;
     }
 
-    applyButton(primaryButton, primary, data.version, 'Download Latest Version');
+    applyButton(primaryButton, primary, 'Download for your OS');
 
     const alternates = collectAlternates(primary, [macDownload, windowsDownload, fallbackDownload]);
-    renderMenu(alternates, data.version);
+    renderMenu(alternates);
+
+    if (versionTag && data.version) {
+      versionTag.textContent = data.version;
+    }
+    if (releaseMeta) {
+      if (data.date) {
+        const published = new Date(data.date);
+        releaseMeta.textContent = `Published ${published.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}`;
+      } else {
+        releaseMeta.textContent = '';
+      }
+    }
 
     latestList.innerHTML = '';
 
