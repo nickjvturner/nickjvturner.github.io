@@ -8,30 +8,32 @@
     "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.dmg",
     "downloads": {
         "mac": {
-            "label": "Download for macOS (.dmg)",
+            "label": "Download (macOS)",
             "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.dmg"
         },
         "windows": {
-            "label": "Download for Windows (.msi)",
+            "label": "Download (Windows)",
             "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.msi"
         }
     },
     "version_history": [
-        {
-            "version": "2025.6.6",
-            "date": "2025-02-08T22:50:26.695756",
-            "comment": [
-                "Initial proof of concept for versioning"
-            ],
-            "download_url": " "
-        },
         {
             "version": "2025.43.2",
             "date": "2025-10-21T15:14:10.784959+00:00",
             "comment": [
                 "Early-alpha release for 'friendly' testing"
             ],
-            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg"
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg",
+            "downloads": {
+                "mac": {
+                    "label": "Download (macOS)",
+                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg"
+                },
+                "windows": {
+                    "label": "Download (Windows)",
+                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.msi"
+                }
+            }
         }
     ]
 }
