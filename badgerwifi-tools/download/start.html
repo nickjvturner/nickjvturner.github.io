@@ -31,8 +31,11 @@
 
     <div class="grid" style="margin: 12px 0 16px;">
       <a id="downloadBtn" class="btn btn-primary" href="#" download>Download BadgerWiFi-Tools</a>
+      <a id="alternateBtn" class="btn btn-ghost" href="#" download hidden>Switch installer</a>
       <div><small class="mono">Version: <span id="ver">–</span></small></div>
     </div>
+
+    <p id="platformStatus" class="muted" hidden></p>
 
     <div class="grid">
       <div class="os-note" id="macHelp" hidden>
@@ -58,7 +61,9 @@
 
     // Populate UI
     const btn = document.getElementById('downloadBtn');
+    const alternateBtn = document.getElementById('alternateBtn');
     const ver = document.getElementById('ver');
+    const platformStatus = document.getElementById('platformStatus');
 
     // Show OS-specific notes
     const ua = navigator.userAgent.toLowerCase();
@@ -66,6 +71,7 @@
     const isWin = ua.includes('windows');
     document.getElementById('macHelp').hidden = !isMac;
     document.getElementById('winHelp').hidden = !isWin;
+    const detectedPlatform = isMac ? 'mac' : isWin ? 'windows' : 'unknown';
 
     let autoTriggered = false;
 
@@ -78,20 +84,71 @@
       }
     };
 
-    const setDownload = (url, version) => {
-      if (version) ver.textContent = version;
-      if (url && isSafeDownload(url)) {
-        btn.href = url;
-        if (!autoTriggered) {
-          autoTriggered = true;
-          setTimeout(() => btn.click(), 700);
-        }
+    const normaliseDownload = (entry, fallbackLabel) => {
+      if (!entry) return null;
+      if (typeof entry === 'string') {
+        return { url: entry, label: fallbackLabel };
+      }
+      if (entry.url) {
+        return { url: entry.url, label: entry.label || fallbackLabel };
+      }
+      return null;
+    };
+
+    const setPrimaryDownload = (download, version, { auto = false } = {}) => {
+      if (version) {
+        ver.textContent = version;
+      }
+
+      if (!download || !isSafeDownload(download.url)) {
+        btn.href = '#';
+        btn.removeAttribute('download');
+        btn.textContent = 'Download unavailable';
+        return;
+      }
+
+      btn.href = download.url;
+      btn.setAttribute('download', '');
+      btn.textContent = version ? `${download.label} (${version})` : download.label;
+
+      if (auto && !autoTriggered) {
+        autoTriggered = true;
+        setTimeout(() => btn.click(), 700);
       }
     };
 
+    const setAlternateDownload = (download, version, primaryUrl) => {
+      if (!download || !isSafeDownload(download.url) || download.url === primaryUrl) {
+        alternateBtn.hidden = true;
+        alternateBtn.removeAttribute('href');
+        alternateBtn.removeAttribute('download');
+        return;
+      }
+
+      alternateBtn.hidden = false;
+      alternateBtn.href = download.url;
+      alternateBtn.setAttribute('download', '');
+      alternateBtn.textContent = version ? `${download.label} (${version})` : download.label;
+    };
+
+    const updatePlatformMessage = text => {
+      if (text) {
+        platformStatus.hidden = false;
+        platformStatus.textContent = text;
+      } else {
+        platformStatus.hidden = true;
+        platformStatus.textContent = '';
+      }
+    };
+
+    const overrideDownload = fileOverride && isSafeDownload(fileOverride)
+      ? { url: fileOverride, label: 'Download BadgerWiFi-Tools' }
+      : null;
+
     // Apply immediate overrides before fetching metadata
-    if (fileOverride) {
-      setDownload(fileOverride, versionOverride || 'latest');
+    if (overrideDownload) {
+      setPrimaryDownload(overrideDownload, versionOverride || 'latest', { auto: true });
+      updatePlatformMessage('Starting download from the link you requested.');
     } else if (versionOverride) {
       ver.textContent = versionOverride;
     }
@@ -100,9 +157,49 @@
     fetch('../application_version.json')
       .then(response => response.json())
       .then(data => {
-        const downloadUrl = fileOverride || data.download_url;
+        const downloads = data.downloads || {};
+        const macDownload = normaliseDownload(downloads.mac, 'Download for macOS (.dmg)');
+        const windowsDownload = normaliseDownload(downloads.windows, 'Download for Windows (.msi)');
+        const fallbackDownload = data.download_url
+          ? normaliseDownload({ url: data.download_url, label: 'Download latest' }, 'Download latest')
+          : null;
         const version = versionOverride || data.version || 'latest';
-        setDownload(downloadUrl, version);
+
+        let primary = null;
+        let alternate = null;
+        let message = '';
+
+        if (overrideDownload) {
+          primary = overrideDownload;
+          alternate = detectedPlatform === 'mac' ? windowsDownload : macDownload;
+          message = alternate && alternate.url !== primary.url
+            ? 'Direct download requested. Use the alternate installer if you need a different OS.'
+            : 'Direct download requested.';
+        } else if (detectedPlatform === 'mac' && macDownload) {
+          primary = macDownload;
+          alternate = windowsDownload;
+          message = windowsDownload
+            ? 'Detected macOS. If you need Windows instead, grab the alternate installer.'
+            : 'Detected macOS.';
+        } else if (detectedPlatform === 'windows' && windowsDownload) {
+          primary = windowsDownload;
+          alternate = macDownload;
+          message = macDownload
+            ? 'Detected Windows. If you need macOS instead, grab the alternate installer.'
+            : 'Detected Windows.';
+        } else {
+          primary = macDownload || windowsDownload || fallbackDownload;
+          alternate = primary === macDownload ? windowsDownload : macDownload;
+          if (macDownload && windowsDownload) {
+            message = 'We couldn’t detect your OS. Choose the installer that matches your system.';
+          } else if (primary) {
+            message = 'Download the installer that matches your system.';
+          }
+        }
+
+        setPrimaryDownload(primary, version, { auto: !overrideDownload });
+        setAlternateDownload(alternate, version, primary && primary.url);
+        updatePlatformMessage(message);
       })
       .catch(err => {
         console.error('Failed to load application_version.json', err);

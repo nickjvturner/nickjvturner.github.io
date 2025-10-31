@@ -6,6 +6,16 @@
         "FUNDAMENTAL FUNCTIONALITY addressed, restoring bundled app version to 'usable'"
     ],
     "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.dmg",
+    "downloads": {
+        "mac": {
+            "label": "Download for macOS (.dmg)",
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.dmg"
+        },
+        "windows": {
+            "label": "Download for Windows (.msi)",
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.msi"
+        }
+    },
     "version_history": [
         {
             "version": "2025.6.6",

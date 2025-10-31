@@ -31,6 +31,18 @@
         .button:hover {
             background-color: #0056b3;
         }
+        .button-group {
+            display: flex;
+            gap: 0.75em;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .button.secondary {
+            background-color: #6c757d;
+        }
+        .button.secondary:hover {
+            background-color: #545b62;
+        }
         .changelog-details {
             margin-top: 2em;
             max-width: 800px;
@@ -59,13 +71,26 @@
             margin-bottom: 0.4em;
             line-height: 1.4;
         }
+        .platform-note {
+            margin-top: 1em;
+            color: #555;
+            font-size: 0.95em;
+            max-width: 420px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1>BadgerWiFi-Tools</h1>
-    <a class="button" href="https://github.com/nickjvturner/badgerwifitools" download>
-        Download Latest Version
-    </a>
+    <div class="button-group">
+        <a id="primaryDownload" class="button" href="#" download>
+            Download Latest Version
+        </a>
+        <a id="alternateDownload" class="button secondary" href="#" download hidden>
+            Alternate download
+        </a>
+    </div>
+    <p id="platformNote" class="platform-note" hidden></p>
     <div class="changelog-details">
       <p><strong>Release Notes:</strong></p>
       <ul id="latest-changelog">
@@ -74,14 +99,106 @@
     </div>
 
     <script>
+const detectPlatform = () => {
+  const ua = navigator.userAgent || '';
+  const lower = ua.toLowerCase();
+  if (lower.includes('mac os x') || lower.includes('macintosh')) return 'mac';
+  if (lower.includes('windows')) return 'windows';
+  return 'unknown';
+};
+
+const isSafeDownload = url => {
+  try {
+    const parsed = new URL(url, location.origin);
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+  } catch {
+    return false;
+  }
+};
+
+const normaliseDownload = (entry, fallbackLabel) => {
+  if (!entry) return null;
+  if (typeof entry === 'string') {
+    return { url: entry, label: fallbackLabel };
+  }
+  if (entry.url) {
+    return { url: entry.url, label: entry.label || fallbackLabel };
+  }
+  return null;
+};
+
+const applyButton = (button, download, version, defaultLabel) => {
+  if (!download || !isSafeDownload(download.url)) {
+    button.href = '#';
+    button.removeAttribute('download');
+    button.textContent = defaultLabel;
+    return;
+  }
+
+  button.href = download.url;
+  button.setAttribute('download', '');
+  const text = download.label || defaultLabel;
+  button.textContent = version ? `${text} (${version})` : text;
+};
+
+const primaryButton = document.getElementById('primaryDownload');
+const alternateButton = document.getElementById('alternateDownload');
+const platformNote = document.getElementById('platformNote');
+const latestList = document.getElementById('latest-changelog');
+
 fetch('application_version.json')
   .then(response => response.json())
   .then(data => {
-    const button = document.querySelector('.button');
-    button.href = data.download_url;
-    button.textContent = `Download Latest Version (${data.version})`;
+    const downloads = data.downloads || {};
+    const macDownload = normaliseDownload(downloads.mac, 'Download for macOS (.dmg)');
+    const windowsDownload = normaliseDownload(downloads.windows, 'Download for Windows (.msi)');
+    const fallbackDownload = data.download_url
+      ? normaliseDownload({ url: data.download_url, label: 'Download latest' }, 'Download latest')
+      : null;
 
-    const latestList = document.getElementById('latest-changelog');
+    const platform = detectPlatform();
+    let primary = null;
+    let alternate = null;
+    let noteText = '';
+
+    if (platform === 'mac' && macDownload) {
+      primary = macDownload;
+      alternate = windowsDownload;
+      noteText = windowsDownload
+        ? 'Detected macOS. Need Windows instead? Use the alternate download.'
+        : 'Detected macOS.';
+    } else if (platform === 'windows' && windowsDownload) {
+      primary = windowsDownload;
+      alternate = macDownload;
+      noteText = macDownload
+        ? 'Detected Windows. Need macOS instead? Use the alternate download.'
+        : 'Detected Windows.';
+    } else {
+      primary = macDownload || windowsDownload || fallbackDownload;
+      alternate = primary === macDownload ? windowsDownload : macDownload;
+      if (macDownload && windowsDownload) {
+        noteText = 'Couldn’t detect your OS. Pick the installer you need.';
+      } else if (primary) {
+        noteText = 'Download the installer that matches your system.';
+      }
+    }
+
+    applyButton(primaryButton, primary, data.version, 'Download Latest Version');
+
+    if (alternate && alternate.url && (!primary || alternate.url !== primary.url)) {
+      applyButton(alternateButton, alternate, data.version, 'Alternate download');
+      alternateButton.hidden = false;
+    } else {
+      alternateButton.hidden = true;
+      alternateButton.removeAttribute('href');
+      alternateButton.removeAttribute('download');
+    }
+
+    platformNote.hidden = !noteText;
+    if (noteText) {
+      platformNote.textContent = noteText;
+    }
+
     latestList.innerHTML = '';
 
     if (Array.isArray(data.changelog)) {
