@@ -31,17 +31,69 @@
         .button:hover {
             background-color: #0056b3;
         }
-        .button-group {
-            display: flex;
-            gap: 0.75em;
-            flex-wrap: wrap;
-            justify-content: center;
+        .download-controls {
+            position: relative;
+            display: inline-flex;
+            align-items: stretch;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
-        .button.secondary {
-            background-color: #6c757d;
+        .download-controls .button {
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
         }
-        .button.secondary:hover {
-            background-color: #545b62;
+        #primaryDownload {
+            border-radius: 6px 0 0 6px;
+            min-width: 240px;
+        }
+        .split-toggle {
+            width: 3em;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            background-color: #0056b3;
+            border-left: 1px solid rgba(255,255,255,0.35);
+        }
+        .split-toggle:hover {
+            background-color: #00408a;
+        }
+        .split-toggle:focus-visible {
+            outline: 2px solid #00408a;
+            outline-offset: 2px;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 0.4em);
+            right: 0;
+            min-width: 220px;
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 6px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+            padding: 0.4em 0;
+            z-index: 20;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.55em 1em;
+            color: #212529;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f1f3f5;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
         }
         .changelog-details {
             margin-top: 2em;
@@ -82,13 +134,15 @@
 </head>
 <body>
     <h1>BadgerWiFi-Tools</h1>
-    <div class="button-group">
+    <div class="download-controls" id="downloadControls">
         <a id="primaryDownload" class="button" href="#" download>
             Download Latest Version
         </a>
-        <a id="alternateDownload" class="button secondary" href="#" download hidden>
-            Alternate download
-        </a>
+        <button id="downloadMenuToggle" class="button split-toggle" type="button" aria-haspopup="menu" aria-expanded="false" hidden>
+            <span aria-hidden="true">▾</span>
+            <span class="sr-only">Show other installers</span>
+        </button>
+        <div id="downloadMenu" class="dropdown-menu" role="menu" hidden></div>
     </div>
     <p id="platformNote" class="platform-note" hidden></p>
     <div class="changelog-details">
@@ -141,10 +195,82 @@ const applyButton = (button, download, version, defaultLabel) => {
   button.textContent = version ? `${text} (${version})` : text;
 };
 
+const collectAlternates = (primary, candidates) => {
+  const options = [];
+  const seen = new Set();
+  const primaryUrl = primary && primary.url;
+  candidates.forEach(candidate => {
+    if (!candidate || !candidate.url) return;
+    if (candidate.url === primaryUrl) return;
+    if (seen.has(candidate.url)) return;
+    seen.add(candidate.url);
+    options.push(candidate);
+  });
+  return options;
+};
+
 const primaryButton = document.getElementById('primaryDownload');
-const alternateButton = document.getElementById('alternateDownload');
+const menuToggle = document.getElementById('downloadMenuToggle');
+const menu = document.getElementById('downloadMenu');
+const downloadControls = document.getElementById('downloadControls');
 const platformNote = document.getElementById('platformNote');
 const latestList = document.getElementById('latest-changelog');
+
+const closeMenu = () => {
+  if (menu.hidden) return;
+  menu.hidden = true;
+  menuToggle.setAttribute('aria-expanded', 'false');
+};
+
+const renderMenu = (items, version) => {
+  menu.innerHTML = '';
+
+  if (!items.length) {
+    closeMenu();
+    menuToggle.hidden = true;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    return;
+  }
+
+  items.forEach(item => {
+    const link = document.createElement('a');
+    link.href = item.url;
+    link.setAttribute('download', '');
+    link.setAttribute('role', 'menuitem');
+    link.textContent = version ? `${item.label} (${version})` : item.label;
+    link.addEventListener('click', () => closeMenu());
+    menu.appendChild(link);
+  });
+
+  menu.hidden = true;
+  menuToggle.hidden = false;
+  menuToggle.setAttribute('aria-expanded', 'false');
+};
+
+menuToggle.addEventListener('click', event => {
+  event.stopPropagation();
+  if (menu.hidden) {
+    menu.hidden = false;
+    menuToggle.setAttribute('aria-expanded', 'true');
+  } else {
+    closeMenu();
+  }
+});
+
+document.addEventListener('click', event => {
+  if (menuToggle.hidden) return;
+  if (!downloadControls.contains(event.target)) {
+    closeMenu();
+  }
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    closeMenu();
+  }
+});
+
+primaryButton.addEventListener('click', () => closeMenu());
 
 fetch('application_version.json')
   .then(response => response.json())
@@ -158,40 +284,34 @@ fetch('application_version.json')
 
     const platform = detectPlatform();
     let primary = null;
-    let alternate = null;
-    let noteText = '';
 
     if (platform === 'mac' && macDownload) {
       primary = macDownload;
-      alternate = windowsDownload;
-      noteText = windowsDownload
-        ? 'Detected macOS. Need Windows instead? Use the alternate download.'
-        : 'Detected macOS.';
     } else if (platform === 'windows' && windowsDownload) {
       primary = windowsDownload;
-      alternate = macDownload;
-      noteText = macDownload
-        ? 'Detected Windows. Need macOS instead? Use the alternate download.'
-        : 'Detected Windows.';
     } else {
       primary = macDownload || windowsDownload || fallbackDownload;
-      alternate = primary === macDownload ? windowsDownload : macDownload;
-      if (macDownload && windowsDownload) {
-        noteText = 'Couldn’t detect your OS. Pick the installer you need.';
-      } else if (primary) {
-        noteText = 'Download the installer that matches your system.';
-      }
     }
 
     applyButton(primaryButton, primary, data.version, 'Download Latest Version');
 
-    if (alternate && alternate.url && (!primary || alternate.url !== primary.url)) {
-      applyButton(alternateButton, alternate, data.version, 'Alternate download');
-      alternateButton.hidden = false;
-    } else {
-      alternateButton.hidden = true;
-      alternateButton.removeAttribute('href');
-      alternateButton.removeAttribute('download');
+    const alternates = collectAlternates(primary, [macDownload, windowsDownload, fallbackDownload]);
+    renderMenu(alternates, data.version);
+
+    let noteText = '';
+    const hasAlternates = alternates.length > 0;
+    if (platform === 'mac' && macDownload) {
+      noteText = hasAlternates && windowsDownload && windowsDownload.url !== (primary && primary.url)
+        ? 'Detected macOS. Need Windows instead? Use the arrow to switch installers.'
+        : 'Detected macOS.';
+    } else if (platform === 'windows' && windowsDownload) {
+      noteText = hasAlternates && macDownload && macDownload.url !== (primary && primary.url)
+        ? 'Detected Windows. Need macOS instead? Use the arrow to switch installers.'
+        : 'Detected Windows.';
+    } else if (hasAlternates && macDownload && windowsDownload) {
+      noteText = 'We couldn’t detect your OS. Use the arrow to choose the installer you need.';
+    } else if (primary && primary.url) {
+      noteText = 'Download the installer that matches your system.';
     }
 
     platformNote.hidden = !noteText;
