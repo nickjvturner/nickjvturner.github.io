@@ -37,7 +37,6 @@
             align-items: stretch;
             border-radius: 6px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
         }
         .download-controls .button {
             border-radius: 0;
@@ -55,6 +54,7 @@
             place-items: center;
             background-color: #0056b3;
             border-left: 1px solid rgba(255,255,255,0.35);
+            border-radius: 0 6px 6px 0;
         }
         .split-toggle:hover {
             background-color: #00408a;
@@ -123,13 +123,6 @@
             margin-bottom: 0.4em;
             line-height: 1.4;
         }
-        .platform-note {
-            margin-top: 1em;
-            color: #555;
-            font-size: 0.95em;
-            max-width: 420px;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -144,7 +137,6 @@
         </button>
         <div id="downloadMenu" class="dropdown-menu" role="menu" hidden></div>
     </div>
-    <p id="platformNote" class="platform-note" hidden></p>
     <div class="changelog-details">
       <p><strong>Release Notes:</strong></p>
       <ul id="latest-changelog">
@@ -213,8 +205,10 @@ const primaryButton = document.getElementById('primaryDownload');
 const menuToggle = document.getElementById('downloadMenuToggle');
 const menu = document.getElementById('downloadMenu');
 const downloadControls = document.getElementById('downloadControls');
-const platformNote = document.getElementById('platformNote');
 const latestList = document.getElementById('latest-changelog');
+
+primaryButton.style.borderTopRightRadius = '6px';
+primaryButton.style.borderBottomRightRadius = '6px';
 
 const closeMenu = () => {
   if (menu.hidden) return;
@@ -229,6 +223,8 @@ const renderMenu = (items, version) => {
     closeMenu();
     menuToggle.hidden = true;
     menuToggle.setAttribute('aria-expanded', 'false');
+    primaryButton.style.borderTopRightRadius = '6px';
+    primaryButton.style.borderBottomRightRadius = '6px';
     return;
   }
 
@@ -245,6 +241,8 @@ const renderMenu = (items, version) => {
   menu.hidden = true;
   menuToggle.hidden = false;
   menuToggle.setAttribute('aria-expanded', 'false');
+  primaryButton.style.borderTopRightRadius = '0';
+  primaryButton.style.borderBottomRightRadius = '0';
 };
 
 menuToggle.addEventListener('click', event => {
@@ -297,27 +295,6 @@ fetch('application_version.json')
 
     const alternates = collectAlternates(primary, [macDownload, windowsDownload, fallbackDownload]);
     renderMenu(alternates, data.version);
-
-    let noteText = '';
-    const hasAlternates = alternates.length > 0;
-    if (platform === 'mac' && macDownload) {
-      noteText = hasAlternates && windowsDownload && windowsDownload.url !== (primary && primary.url)
-        ? 'Detected macOS. Need Windows instead? Use the arrow to switch installers.'
-        : 'Detected macOS.';
-    } else if (platform === 'windows' && windowsDownload) {
-      noteText = hasAlternates && macDownload && macDownload.url !== (primary && primary.url)
-        ? 'Detected Windows. Need macOS instead? Use the arrow to switch installers.'
-        : 'Detected Windows.';
-    } else if (hasAlternates && macDownload && windowsDownload) {
-      noteText = 'We couldn’t detect your OS. Use the arrow to choose the installer you need.';
-    } else if (primary && primary.url) {
-      noteText = 'Download the installer that matches your system.';
-    }
-
-    platformNote.hidden = !noteText;
-    if (noteText) {
-      platformNote.textContent = noteText;
-    }
 
     latestList.innerHTML = '';
 

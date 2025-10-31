@@ -18,7 +18,7 @@
     .btn-primary { background: #2563eb; color: #fff; }
     .btn-ghost   { border-color: #ccc; color: inherit; background: transparent; }
     .split-control { position: relative; display: inline-flex; align-items: stretch; border-radius: 10px;
-                     box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25); overflow: hidden; }
+                     box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25); }
     .split-control .btn { border-radius: 0; border: none; box-shadow: none; }
     .split-control .btn-primary { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
     .split-control .split-toggle { width: 3rem; padding: 0; display: grid; place-items: center;
@@ -56,8 +56,6 @@
       <div><small class="mono">Version: <span id="ver">–</span></small></div>
     </div>
 
-    <p id="platformStatus" class="muted" hidden></p>
-
     <div class="grid">
       <div class="os-note" id="macHelp" hidden>
         <strong>macOS:</strong> Open the <span class="mono">.dmg</span>, then drag the app to <strong>Applications</strong>.<br/>
@@ -86,7 +84,8 @@
     const menu = document.getElementById('downloadMenu');
     const controls = document.getElementById('downloadControls');
     const ver = document.getElementById('ver');
-    const platformStatus = document.getElementById('platformStatus');
+    btn.style.borderTopRightRadius = '10px';
+    btn.style.borderBottomRightRadius = '10px';
 
     // Show OS-specific notes
     const ua = navigator.userAgent.toLowerCase();
@@ -145,6 +144,8 @@
         closeMenu();
         menuToggle.hidden = true;
         menuToggle.setAttribute('aria-expanded', 'false');
+        btn.style.borderTopRightRadius = '10px';
+        btn.style.borderBottomRightRadius = '10px';
         return;
       }
 
@@ -161,6 +162,8 @@
       menu.hidden = true;
       menuToggle.hidden = false;
       menuToggle.setAttribute('aria-expanded', 'false');
+      btn.style.borderTopRightRadius = '0';
+      btn.style.borderBottomRightRadius = '0';
     };
 
     menuToggle.addEventListener('click', event => {
@@ -211,16 +214,6 @@
       }
     };
 
-    const updatePlatformMessage = text => {
-      if (text) {
-        platformStatus.hidden = false;
-        platformStatus.textContent = text;
-      } else {
-        platformStatus.hidden = true;
-        platformStatus.textContent = '';
-      }
-    };
-
     const overrideDownload = fileOverride && isSafeDownload(fileOverride)
       ? { url: fileOverride, label: 'Download BadgerWiFi-Tools' }
       : null;
@@ -228,7 +221,6 @@
     // Apply immediate overrides before fetching metadata
     if (overrideDownload) {
       setPrimaryDownload(overrideDownload, versionOverride || 'latest', { auto: true });
-      updatePlatformMessage('Starting download from the link you requested.');
     } else if (versionOverride) {
       ver.textContent = versionOverride;
     }
@@ -262,28 +254,6 @@
         const alternates = collectAlternates(primary, [macDownload, windowsDownload, fallbackDownload]);
         renderMenu(alternates, version);
 
-        const hasAlternates = alternates.length > 0;
-        let message = '';
-
-        if (overrideDownload) {
-          message = hasAlternates
-            ? 'Direct download requested. Use the arrow to switch installers if you need a different build.'
-            : 'Direct download requested.';
-        } else if (detectedPlatform === 'mac' && macDownload) {
-          message = hasAlternates && windowsDownload && windowsDownload.url !== (primary && primary.url)
-            ? 'Detected macOS. Need Windows instead? Use the arrow to switch installers.'
-            : 'Detected macOS.';
-        } else if (detectedPlatform === 'windows' && windowsDownload) {
-          message = hasAlternates && macDownload && macDownload.url !== (primary && primary.url)
-            ? 'Detected Windows. Need macOS instead? Use the arrow to switch installers.'
-            : 'Detected Windows.';
-        } else if (hasAlternates && macDownload && windowsDownload) {
-          message = 'We couldn’t detect your OS. Use the arrow to choose the installer you need.';
-        } else if (primary && primary.url) {
-          message = 'Download the installer that matches your system.';
-        }
-
-        updatePlatformMessage(message);
       })
       .catch(err => {
         console.error('Failed to load application_version.json', err);
