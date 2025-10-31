@@ -8,11 +8,11 @@
     "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.dmg",
     "downloads": {
         "mac": {
-            "label": "Download (macOS)",
+            "label": "Download for macOS",
             "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.dmg"
         },
         "windows": {
-            "label": "Download (Windows)",
+            "label": "Download for Windows",
             "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.msi"
         }
     },
@@ -26,11 +26,11 @@
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg",
             "downloads": {
                 "mac": {
-                    "label": "Download (macOS)",
+                    "label": "Download for macOS",
                     "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg"
                 },
                 "windows": {
-                    "label": "Download (Windows)",
+                    "label": "Download for Windows",
                     "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.msi"
                 }
             }
