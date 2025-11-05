@@ -1,18 +1,18 @@
 {
-    "version": "25.45.1",
-    "date": "2025-11-05T20:52:51.390456+00:00",
+    "version": "25.45.2",
+    "date": "2025-11-05T22:23:15.218773+00:00",
     "changelog": [
-        "Welcome/version messaging, cleaner activity console/menu layout."
+        "Version bump"
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.dmg"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.msi"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.msi"
         }
     },
     "version_history": [
@@ -54,6 +54,14 @@
                 "Logging implemented for diagnostics and user support."
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.44.1.dmg"
+        },
+        {
+            "version": "25.45.1",
+            "date": "2025-11-05T20:52:51.390456+00:00",
+            "comment": [
+                "Welcome/version messaging, cleaner activity console/menu layout."
+            ],
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.dmg"
         }
     ]
 }
