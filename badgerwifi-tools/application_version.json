@@ -1,52 +1,59 @@
 {
-    "version": "2025.44.7",
-    "date": "2025-11-02T22:25:22.532865+00:00",
+    "version": "25.45.1",
+    "date": "2025-11-05T20:52:51.390456+00:00",
     "changelog": [
-        "End-to-end licensing flow put in place: local licence storage, activation/refresh against the server, GUI management dialog, and recent async/timeouts so the UI stays responsive even when offline.",
-        "Project profiles became first-class: seeded into user documents, optional tracking updates, TOML-driven validation/test configuration, per-profile rename script preferences, and customizable model sort ordering for the AP renamer.",
-        "Workflow stability and UX polish: safer .esx handling, corruption-resistant app state/settings, silent update checks that fail gracefully, welcome/version messaging, and a cleaner activity console/menu layout.",
-        "Reporting & automation tooling expanded: AP list/BOM export improvements, post-deployment survey project builder, map creation scripts, and most recently a “process automation” script bundle.",
-        "Platform and packaging tweaks: paths now respect platformdirs, user assets live under Documents, bundle identifiers/app names adjusted, and outdated update/licensing code paths retired.",
-        "General hygiene: unused code and imports removed, directory moves completed, and repeated refactors to keep the codebase organised for the next round of testers."
+        "Welcome/version messaging, cleaner activity console/menu layout."
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.44.7.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.44.7.dmg"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.44.7.msi"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.msi"
         }
     },
     "version_history": [
         {
-            "version": "2025.43.2",
+            "version": "25.43.1",
             "date": "2025-10-21T15:14:10.784959+00:00",
             "comment": [
                 "Early-alpha release for 'friendly' testing"
             ],
-            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg",
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.1.dmg",
             "downloads": {
                 "mac": {
                     "label": "Download for macOS",
-                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.dmg"
+                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.1.dmg"
                 },
                 "windows": {
                     "label": "Download for Windows",
-                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.2.msi"
+                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.1.msi"
                 }
             }
         },
         {
-            "version": "2025.43.4.4",
+            "version": "25.43.2",
             "date": "2025-10-23T15:17:33.985121+00:00",
             "comment": [
                 "CRITICAL BUG",
                 "FUNDAMENTAL FUNCTIONALITY addressed, restoring bundled app version to 'usable'"
             ],
-            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-2025.43.4.4.dmg"
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.2.dmg"
+        },
+        {
+            "version": "25.44.1",
+            "date": "2025-11-02T22:25:22.532865+00:00",
+            "comment": [
+                "Licensing flow reworked: local licence storage, activation/refresh against the server, GUI management dialog, recent async/timeouts so the UI stays responsive even when offline.",
+                "Project profiles will be seeded into user documents, made tracking updates optional, validation/test configuration moved into project profiles.",
+                "Platform and packaging tweaks: paths now respect platformdirs, user assets live under Documents, bundle identifiers/app names adjusted.",
+                "General hygiene: unused code and imports removed, directory moves completed.",
+                "Logging implemented for diagnostics and user support."
+            ],
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.44.1.dmg"
         }
     ]
 }
