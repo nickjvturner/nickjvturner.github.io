@@ -2,7 +2,7 @@
     "version": "25.45.2",
     "date": "2025-11-05T22:23:15.218773+00:00",
     "changelog": [
-        "Version bump"
+        "Welcome/version messaging, cleaner activity console/menu layout."
     ],
     "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.dmg",
     "downloads": {
@@ -20,28 +20,9 @@
             "version": "25.43.1",
             "date": "2025-10-21T15:14:10.784959+00:00",
             "comment": [
-                "Early-alpha release for 'friendly' testing"
+                "Initial release"
             ],
-            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.1.dmg",
-            "downloads": {
-                "mac": {
-                    "label": "Download for macOS",
-                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.1.dmg"
-                },
-                "windows": {
-                    "label": "Download for Windows",
-                    "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.1.msi"
-                }
-            }
-        },
-        {
-            "version": "25.43.2",
-            "date": "2025-10-23T15:17:33.985121+00:00",
-            "comment": [
-                "CRITICAL BUG",
-                "FUNDAMENTAL FUNCTIONALITY addressed, restoring bundled app version to 'usable'"
-            ],
-            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.2.dmg"
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.43.1.dmg"
         },
         {
             "version": "25.44.1",
@@ -54,14 +35,6 @@
                 "Logging implemented for diagnostics and user support."
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.44.1.dmg"
-        },
-        {
-            "version": "25.45.1",
-            "date": "2025-11-05T20:52:51.390456+00:00",
-            "comment": [
-                "Welcome/version messaging, cleaner activity console/menu layout."
-            ],
-            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.1.dmg"
         }
     ]
 }
