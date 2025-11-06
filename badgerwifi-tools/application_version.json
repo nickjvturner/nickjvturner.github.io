@@ -1,18 +1,25 @@
 {
-    "version": "25.45.2",
-    "date": "2025-11-05T22:23:15.218773+00:00",
+    "version": "25.45.3",
+    "date": "2025-11-06T15:22:54.947020+00:00",
     "changelog": [
-        "Welcome/version messaging, cleaner activity console/menu layout."
+        "Rearranged UI elements for better usability:",
+        "Create PDS project moved from tab3 to tab2",
+        "Moved Project Profile selector out of tabbed view",
+        "Adjusted tab order of buttons for more logical flow",
+        "Unified and improved OUTPUT file logic:",
+        "renamed AP projects now append the date/time to the output filename",
+        "Added logic surrounding AP_RENAMED project files to prevent nested OUTPUT dirs",
+        "PDS project export now uses OUTPUT/PDS Projects folder for consistency"
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.3.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.dmg"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.3.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.msi"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.3.msi"
         }
     },
     "version_history": [
@@ -35,6 +42,14 @@
                 "Logging implemented for diagnostics and user support."
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.44.1.dmg"
+        },
+        {
+            "version": "25.45.2",
+            "date": "2025-11-05T22:23:15.218773+00:00",
+            "comment": [
+                "Welcome/version messaging, cleaner activity console/menu layout."
+            ],
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.dmg"
         }
     ]
 }
