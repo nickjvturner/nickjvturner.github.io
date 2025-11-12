@@ -337,6 +337,46 @@ const latestList = document.getElementById('latest-changelog');
 const versionTag = document.getElementById('versionTag');
 const releaseMeta = document.getElementById('releaseMeta');
 
+const buildNestedList = (lines, root) => {
+  if (!root) return;
+  root.innerHTML = '';
+  if (!Array.isArray(lines)) return;
+
+  const stack = [root];
+  lines.forEach(rawLine => {
+    if (rawLine == null) return;
+    const line = String(rawLine);
+    const trimmed = line.trim();
+    if (!trimmed) return;
+
+    const indentSource = line.match(/^\s*/)?.[0] ?? '';
+    const indentWidth = indentSource.replace(/\t/g, '  ').length;
+    let level = Math.floor(indentWidth / 2);
+    if (level < 0) level = 0;
+    if (level > 6) level = 6;
+
+    while (stack.length - 1 > level) {
+      stack.pop();
+    }
+
+    while (stack.length - 1 < level) {
+      const parentList = stack[stack.length - 1];
+      const parentLi = parentList.lastElementChild;
+      if (!parentLi) {
+        level = stack.length - 1;
+        break;
+      }
+      const nestedUl = document.createElement('ul');
+      parentLi.appendChild(nestedUl);
+      stack.push(nestedUl);
+    }
+
+    const li = document.createElement('li');
+    li.textContent = trimmed;
+    stack[stack.length - 1].appendChild(li);
+  });
+};
+
 const defaultRadius = '12px';
 primaryButton.style.borderTopRightRadius = defaultRadius;
 primaryButton.style.borderBottomRightRadius = defaultRadius;
@@ -445,15 +485,7 @@ fetch('application_version.json')
       }
     }
 
-    latestList.innerHTML = '';
-
-    if (Array.isArray(data.changelog)) {
-      data.changelog.forEach(line => {
-        const li = document.createElement('li');
-        li.textContent = line.trim();
-        latestList.appendChild(li);
-      });
-    }
+    buildNestedList(data.changelog, latestList);
   })
   .catch(error => {
     console.error('Error loading version info:', error);

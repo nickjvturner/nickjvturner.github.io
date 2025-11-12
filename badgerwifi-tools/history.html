@@ -43,6 +43,46 @@
   <div id="history"></div>
 
   <script>
+    const buildNestedList = (lines, root) => {
+      if (!root) return;
+      root.innerHTML = '';
+      if (!Array.isArray(lines)) return;
+
+      const stack = [root];
+      lines.forEach(rawLine => {
+        if (rawLine == null) return;
+        const line = String(rawLine);
+        const trimmed = line.trim();
+        if (!trimmed) return;
+
+        const indentSource = line.match(/^\s*/)?.[0] ?? '';
+        const indentWidth = indentSource.replace(/\t/g, '  ').length;
+        let level = Math.floor(indentWidth / 2);
+        if (level < 0) level = 0;
+        if (level > 6) level = 6;
+
+        while (stack.length - 1 > level) {
+          stack.pop();
+        }
+
+        while (stack.length - 1 < level) {
+          const parentList = stack[stack.length - 1];
+          const parentLi = parentList.lastElementChild;
+          if (!parentLi) {
+            level = stack.length - 1;
+            break;
+          }
+          const nestedUl = document.createElement('ul');
+          parentLi.appendChild(nestedUl);
+          stack.push(nestedUl);
+        }
+
+        const li = document.createElement('li');
+        li.textContent = trimmed;
+        stack[stack.length - 1].appendChild(li);
+      });
+    };
+
     fetch('application_version.json')
       .then(response => response.json())
       .then(data => {
@@ -73,15 +113,8 @@
           container.appendChild(dateText);
 
           const ul = document.createElement('ul');
-          if (Array.isArray(entry.comment)) {
-            entry.comment.forEach(line => {
-              const li = document.createElement('li');
-              li.textContent = line.trim();
-              ul.appendChild(li);
-            });
-          }
-
           container.appendChild(ul);
+          buildNestedList(entry.comment, ul);
           historyDiv.appendChild(container);
         });
       })
