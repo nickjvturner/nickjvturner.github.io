@@ -1,42 +1,26 @@
 {
-    "version": "25.46.2",
-    "date": "2025-11-12T12:25:07.879494+00:00",
-    "changelog": [
-        "AP Rename mechanism and Visualiser restructured",
-        "Project Profiles:",
-        "  Added Project Profiles item to menu bar",
-        "  Example profiles can now be removed, BWT will not automatically reseed them",
-        "  Example profiles can be restored at any time from the Project Profiles menu",
-        "  Project Profile list can be refreshed without restarting the app",
-        "Added 'pre-release' identifier to the Application Window",
-        "Added 'Unlicensed' identifier to the Application Window when no valid licence is present",
-        "Rearranged Predictive Design Rename buttons, placing Visualiser above 'action' buttons",
-        "Added Windows trust bridge, so that activation/validation calls honour the local certificate store",
-        "Improved error handling messaging surrounding licence activation/validation failures",
-        "Project data type protections added along with more friendly messaging:",
-        "  AP Images",
-        "  Note Images",
-        "  Surveyed AP List ",
-        "  Validate simulated AP project",
-        "Duplicate AP Name handling improved, dicts now keyed with AP ID rather than name",
-        "  Preventing data loss when duplicate names are present",
-        "  Appending characters to duplicated name logic removed",
-        "Summarise simulated AP data",
-        "  Decoupled summarisation from project profile, while retaining tag key / value totals",
-        "  Added duplicate names to summary report",
-        "  Added vendor model counts to summary report",
-        "  Added mount type counts to summary report",
-        "  Added tilt value counts to summary report"
+    "version": "25.45.3",
+    "date": "2025-11-06T15:22:54.947020+00:00",
+    "comment": [
+        "UI Changes",
+        "  Rearranged UI elements for better usability:",
+        "  Create PDS project moved from tab3 to tab2",
+        "  Moved Project Profile selector out of tabbed view",
+        "  Adjusted tab order of buttons for more logical flow",
+        "Unified and improved OUTPUT file logic:",
+        "  renamed AP projects now append the date/time to the output filename",
+        "  Added logic surrounding AP_RENAMED project files to prevent nested OUTPUT dirs",
+        "  PDS project export now uses OUTPUT/PDS Projects folder for consistency"
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.46.2.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.3.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.46.2.dmg"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.3.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.46.2.msi"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.3.msi"
         }
     },
     "version_history": [
@@ -67,22 +51,6 @@
                 "Welcome/version messaging, cleaner activity console/menu layout."
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.2.dmg"
-        },
-        {
-            "version": "25.45.3",
-            "date": "2025-11-06T15:22:54.947020+00:00",
-            "comment": [
-                "UI Changes",
-                "  Rearranged UI elements for better usability:",
-                "  Create PDS project moved from tab3 to tab2",
-                "  Moved Project Profile selector out of tabbed view",
-                "  Adjusted tab order of buttons for more logical flow",
-                "Unified and improved OUTPUT file logic:",
-                "  renamed AP projects now append the date/time to the output filename",
-                "  Added logic surrounding AP_RENAMED project files to prevent nested OUTPUT dirs",
-                "  PDS project export now uses OUTPUT/PDS Projects folder for consistency"
-            ],
-            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.45.3.dmg"
         }
     ]
 }
