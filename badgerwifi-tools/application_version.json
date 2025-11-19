@@ -26,9 +26,9 @@
         "  Update dialog now renders bullet points more cleanly",
         "  Rename AP Visualiser window title and button label updated",
         "  Close Visualiser button replaces previous Dismiss button",
-        "  Esc key now closes the AP Rename Visualiser window"
+        "  Esc key now closes the AP Rename Visualiser window",
         "  Silent update check on launch is now asynchronous to prevent UI slowdown",
-        "  Auto Scroll to top of activity console introduced with Validate and Summarise actions"
+        "  Auto Scroll to top of activity console introduced with Validate and Summarise actions",
         "  Validate and Summarise actions now produce .txt file output in OUTPUT/reports"
     ],
     "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.dmg",
