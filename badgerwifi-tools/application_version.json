@@ -1,41 +1,45 @@
 {
-    "version": "25.47.1",
-    "date": "2025-11-17T23:04:10.200514+00:00",
+    "version": "25.47.2",
+    "date": "2025-11-19T17:40:22.664144+00:00",
     "changelog": [
-        "Rename Patterns",
-        "  New user dir added to Documents/BadgerWiFi-Tools",
-        "  Rename pattern options added to menu bar",
-        "  Renamed the AP rename patterns",
-        "  New mechanism for Rows and Columns",
-        "  AP colour sort rename pattern added",
-        "  tag-key: value sorting pattern added",
-        "AP Rename Visualiser",
-        "  Added handling for default coloured APs",
-        "  Added floor order control / customisation",
-        "  floor order changes will persist until BWT is closed or the session is reset",
-        "  Introduced UP/DOWN navigation buttons",
-        "  Added a concise summary when you close the visualiser",
-        "  Visualiser can now handle vector floorplan projects",
-        "User Interface",
-        "  Abort handling tightened up",
-        "Validate function",
-        "  All tests now show PASS / FAIL / CAUTION no silent results",
-        "  Test results emojified",
-        "  Renamed a few tests for clarity",
-        "  Profile override PASS/FAIL messaging now possible",
-        "  Added vector floorplan detection test",
-        "  Added concise header to test result with emoji key",
-        "'Unable to reach the update server' message added, while logging the raw traceback"
+        "License mechanism:",
+        "  Changed method for requesting computer name",
+        "  Toned down overly aggressive remove license file behavior",
+        "Map Creation:",
+        "  Addressed colour dictionary to handle default coloured APs",
+        "AP Rename Visualiser:",
+        "  Brought back Auto Rows/Columns (previously Dynamic Rows/Columns)",
+        "  Auto R/C now encompasses the first AP rather than starting at it",
+        "  Introduced Manual Rows/Columns to differentiate from Auto Rows/Columns",
+        "  Manual R/C canvas is always in edit mode, no extra button needed to enter edit mode",
+        "  Added 'Add / Clear' Separators button to Manual R/C to speed up adding multiple separators",
+        "  Reorder floors action moved into the floor selection dropdown",
+        "  Navigate up / down buttons now grey out when at the top / bottom of the list",
+        "  Added dedicated Model Priority pattern",
+        "  Rename Strategy displays information in the activity console on pattern selection / edit",
+        "  Visualiser respects the start number from the main window",
+        "Survey Summary:",
+        "  Introduced All APs summary function",
+        "  Introduced My APs summary function",
+        "  Dressed up summary output with emoji, to get some colour into the wall of text",
+        "User Interface:",
+        "  Update dialog now renders bullet points more cleanly",
+        "  Rename AP Visualiser window title and button label updated",
+        "  Close Visualiser button replaces previous Dismiss button",
+        "  Esc key now closes the AP Rename Visualiser window"
+        "  Silent update check on launch is now asynchronous to prevent UI slowdown",
+        "  Auto Scroll to top of activity console introduced with Validate and Summarise actions"
+        "  Validate and Summarise actions now produce .txt file output in OUTPUT/reports"
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.1.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.1.dmg"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.1.msi"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.msi"
         }
     },
     "version_history": [
@@ -116,6 +120,37 @@
                 "  Added tilt value counts to summary report"
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.46.3.dmg"
+        },
+        {
+            "version": "25.47.1",
+            "date": "2025-11-17T23:04:10.200514+00:00",
+            "comment": [
+                "Rename Patterns",
+                "  New user dir added to Documents/BadgerWiFi-Tools",
+                "  Rename pattern options added to menu bar",
+                "  Renamed the AP rename patterns",
+                "  New mechanism for Rows and Columns",
+                "  AP colour sort rename pattern added",
+                "  tag-key: value sorting pattern added",
+                "AP Rename Visualiser",
+                "  Added handling for default coloured APs",
+                "  Added floor order control / customisation",
+                "  floor order changes will persist until BWT is closed or the session is reset",
+                "  Introduced UP/DOWN navigation buttons",
+                "  Added a concise summary when you close the visualiser",
+                "  Visualiser can now handle vector floorplan projects",
+                "User Interface",
+                "  Abort handling tightened up",
+                "  'Unable to reach the update server' message added, while logging the raw traceback",
+                "Validate function",
+                "  All tests now show PASS / FAIL / CAUTION no silent results",
+                "  Test results emojified",
+                "  Renamed a few tests for clarity",
+                "  Profile override PASS/FAIL messaging now possible",
+                "  Added vector floorplan detection test",
+                "  Added concise header to test result with emoji key"
+            ],
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.1.dmg"
         }
     ]
 }
