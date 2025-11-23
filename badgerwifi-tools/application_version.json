@@ -12,7 +12,6 @@
         "    This should work for both Predictive Design and Surveyed AP projects",
         "    XLSX also includes AP ID for unambiguous identification, this way duplicate names can be handled safely",
         "  Sweep X and Sweep Y renamed to keep patterns together in alphabetical list",
-
         "Project Profiles:",
         "  Removed 'optional-tags' this parameter is no longer needed",
         "Summarise:",
@@ -31,8 +30,7 @@
         "  Improved messaging surrounding activation / validation failure",
         "Area Maps:",
         "  Experimental map exporter introduced to quickly assess area / exclusion area definition",
-        "  Display total square metres considered in-scope on map",
-
+        "  Display total square metres considered in-scope on map"
     ],
     "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.dmg",
     "downloads": {
