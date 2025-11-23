@@ -1,45 +1,48 @@
 {
-    "version": "25.47.2",
-    "date": "2025-11-19T17:40:22.664144+00:00",
+    "version": "25.47.3",
+    "date": "2025-11-23T21:39:46.370409+00:00",
     "changelog": [
-        "License mechanism:",
-        "  Changed method for requesting computer name",
-        "  Toned down overly aggressive remove license file behavior",
-        "Map Creation:",
-        "  Addressed colour dictionary to handle default coloured APs",
-        "AP Rename Visualiser:",
-        "  Brought back Auto Rows/Columns (previously Dynamic Rows/Columns)",
-        "  Auto R/C now encompasses the first AP rather than starting at it",
-        "  Introduced Manual Rows/Columns to differentiate from Auto Rows/Columns",
-        "  Manual R/C canvas is always in edit mode, no extra button needed to enter edit mode",
-        "  Added 'Add / Clear' Separators button to Manual R/C to speed up adding multiple separators",
-        "  Reorder floors action moved into the floor selection dropdown",
-        "  Navigate up / down buttons now grey out when at the top / bottom of the list",
-        "  Added dedicated Model Priority pattern",
-        "  Rename Strategy displays information in the activity console on pattern selection / edit",
-        "  Visualiser respects the start number from the main window",
-        "Survey Summary:",
-        "  Introduced All APs summary function",
-        "  Introduced My APs summary function",
-        "  Dressed up summary output with emoji, to get some colour into the wall of text",
-        "User Interface:",
-        "  Update dialog now renders bullet points more cleanly",
-        "  Rename AP Visualiser window title and button label updated",
-        "  Close Visualiser button replaces previous Dismiss button",
-        "  Esc key now closes the AP Rename Visualiser window",
-        "  Silent update check on launch is now asynchronous to prevent UI slowdown",
-        "  Auto Scroll to top of activity console introduced with Validate and Summarise actions",
-        "  Validate and Summarise actions now produce .txt file output in OUTPUT/reports"
+        "Map Creation Visualiser:",
+        "  Introduced visualiser to preview AP icon size and text label size before generating maps",
+        "  Added zoom controls",
+        "  Panning map with arrow keys",
+        "AP Rename Patterns:",
+        "  XLSX export/import",
+        "    Introduced, enabling bulk rename from 'old name' to 'new name' via Excel",
+        "    This should work for both Predictive Design and Surveyed AP projects",
+        "    XLSX also includes AP ID for unambiguous identification, this way duplicate names can be handled safely",
+        "  Sweep X and Sweep Y renamed to keep patterns together in alphabetical list",
+
+        "Project Profiles:",
+        "  Removed 'optional-tags' this parameter is no longer needed",
+        "Summarise:",
+        "  Added area & exclusion area calculations to summary",
+        "License Manager:",
+        "  Unified field order in licensed / unlicensed states",
+        "  Addressed window size on Windows (ha ha)",
+        "  LM no longer auto closes after activation / license removal",
+        "  ESC will dismiss LM window",
+        "  License key input will be assesed to prevent non-conforming keys being sent to license server",
+        "General Improvements:",
+        "  Guarded against crash if executed on Linux (somehow)",
+        "  Renamer hardened against missing location / floor data",
+        "  AP List generators hardened against missing JSON assets",
+        "  Hardened update check failure",
+        "  Improved messaging surrounding activation / validation failure",
+        "Area Maps:",
+        "  Experimental map exporter introduced to quickly assess area / exclusion area definition",
+        "  Display total square metres considered in-scope on map",
+
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.dmg"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.msi"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.msi"
         }
     },
     "version_history": [
@@ -151,6 +154,41 @@
                 "  Added concise header to test result with emoji key"
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.1.dmg"
+        },
+        {
+            "version": "25.47.2",
+            "date": "2025-11-19T17:40:22.664144+00:00",
+            "comment": [
+                "License mechanism:",
+                "  Changed method for requesting computer name",
+                "  Toned down overly aggressive remove license file behavior",
+                "Map Creation:",
+                "  Addressed colour dictionary to handle default coloured APs",
+                "AP Rename Visualiser:",
+                "  Brought back Auto Rows/Columns (previously Dynamic Rows/Columns)",
+                "  Auto R/C now encompasses the first AP rather than starting at it",
+                "  Introduced Manual Rows/Columns to differentiate from Auto Rows/Columns",
+                "  Manual R/C canvas is always in edit mode, no extra button needed to enter edit mode",
+                "  Added 'Add / Clear' Separators button to Manual R/C to speed up adding multiple separators",
+                "  Reorder floors action moved into the floor selection dropdown",
+                "  Navigate up / down buttons now grey out when at the top / bottom of the list",
+                "  Added dedicated Model Priority pattern",
+                "  Rename Strategy displays information in the activity console on pattern selection / edit",
+                "  Visualiser respects the start number from the main window",
+                "Survey Summary:",
+                "  Introduced All APs summary function",
+                "  Introduced My APs summary function",
+                "  Dressed up summary output with emoji, to get some colour into the wall of text",
+                "User Interface:",
+                "  Update dialog now renders bullet points more cleanly",
+                "  Rename AP Visualiser window title and button label updated",
+                "  Close Visualiser button replaces previous Dismiss button",
+                "  Esc key now closes the AP Rename Visualiser window",
+                "  Silent update check on launch is now asynchronous to prevent UI slowdown",
+                "  Auto Scroll to top of activity console introduced with Validate and Summarise actions",
+                "  Validate and Summarise actions now produce .txt file output in OUTPUT/reports"
+            ],
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.dmg"
         }
     ]
 }
