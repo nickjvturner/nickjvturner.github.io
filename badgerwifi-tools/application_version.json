@@ -1,46 +1,34 @@
 {
-    "version": "25.47.3",
-    "date": "2025-11-23T21:39:46.370409+00:00",
+    "version": "25.48.1",
+    "date": "2025-11-27T23:28:47.496351+00:00",
     "changelog": [
-        "Map Creation Visualiser:",
-        "  Introduced visualiser to preview AP icon size and text label size before generating maps",
-        "  Added zoom controls",
-        "  Panning map with arrow keys",
-        "AP Rename Patterns:",
-        "  XLSX export/import",
-        "    Introduced, enabling bulk rename from 'old name' to 'new name' via Excel",
-        "    This should work for both Predictive Design and Surveyed AP projects",
-        "    XLSX also includes AP ID for unambiguous identification, this way duplicate names can be handled safely",
-        "  Sweep X and Sweep Y renamed to keep patterns together in alphabetical list",
-        "Project Profiles:",
-        "  Removed 'optional-tags' this parameter is no longer needed",
-        "Summarise:",
-        "  Added area & exclusion area calculations to summary",
-        "License Manager:",
-        "  Unified field order in licensed / unlicensed states",
-        "  Addressed window size on Windows (ha ha)",
-        "  LM no longer auto closes after activation / license removal",
-        "  ESC will dismiss LM window",
-        "  License key input will be assesed to prevent non-conforming keys being sent to license server",
-        "General Improvements:",
-        "  Guarded against crash if executed on Linux (somehow)",
-        "  Renamer hardened against missing location / floor data",
-        "  AP List generators hardened against missing JSON assets",
-        "  Hardened update check failure",
-        "  Improved messaging surrounding activation / validation failure",
-        "Area Maps:",
-        "  Experimental map exporter introduced to quickly assess area / exclusion area definition",
-        "  Display total square metres considered in-scope on map"
+        "AP Lists now output to a dir called \"AP Lists\" within OUTPUT",
+        "User Interface:",
+        "  Cleaned up, restructured and emojified most console messages",
+        "  Rename Visualiser button disables when XLSX rename pattern is selected",
+        "  Replaced Asset Creator button row with dropdown selector",
+        "  PDS projects can be created with original maps or PDS maps",
+        "  Centralised and standardised process completion message",
+        "Map Visualiser:",
+        "  Map Visualiser button disables when irrelevant style is selected",
+        "  Sidebar added to hold parameter input boxes and controls",
+        "  Map Style selector added",
+        "  Added ability to step through APs when Zoomed AP style is selected",
+        "  Draw visible square boundary around Zoomed AP in accordance with crop parameter",
+        "  Zoomed AP style control visibility and opacity of 'other APs'",
+        "  Summary of configured parameters printed to activity console on Map Style change / Visualiser close",
+        "Bug Fix:",
+        "  Missing dependency openpyxl added to bundle"
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.dmg",
+    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.48.1.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.dmg"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.48.1.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.msi"
+            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.48.1.msi"
         }
     },
     "version_history": [
@@ -187,6 +175,42 @@
                 "  Validate and Summarise actions now produce .txt file output in OUTPUT/reports"
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.2.dmg"
+        },
+        {
+            "version": "25.47.3",
+            "date": "2025-11-23T21:39:46.370409+00:00",
+            "comment": [
+                "Map Creation Visualiser:",
+                "  Introduced visualiser to preview AP icon size and text label size before generating maps",
+                "  Added zoom controls",
+                "  Panning map with arrow keys",
+                "AP Rename Patterns:",
+                "  XLSX export/import",
+                "    Introduced, enabling bulk rename from 'old name' to 'new name' via Excel",
+                "    This should work for both Predictive Design and Surveyed AP projects",
+                "    XLSX also includes AP ID for unambiguous identification, this way duplicate names can be handled safely",
+                "  Sweep X and Sweep Y renamed to keep patterns together in alphabetical list",
+                "Project Profiles:",
+                "  Removed 'optional-tags' this parameter is no longer needed",
+                "Summarise:",
+                "  Added area & exclusion area calculations to summary",
+                "License Manager:",
+                "  Unified field order in licensed / unlicensed states",
+                "  Addressed window size on Windows (ha ha)",
+                "  LM no longer auto closes after activation / license removal",
+                "  ESC will dismiss LM window",
+                "  License key input will be assesed to prevent non-conforming keys being sent to license server",
+                "General Improvements:",
+                "  Guarded against crash if executed on Linux (somehow)",
+                "  Renamer hardened against missing location / floor data",
+                "  AP List generators hardened against missing JSON assets",
+                "  Hardened update check failure",
+                "  Improved messaging surrounding activation / validation failure",
+                "Area Maps:",
+                "  Experimental map exporter introduced to quickly assess area / exclusion area definition",
+                "  Display total square metres considered in-scope on map"
+            ],
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.dmg"
         }
     ]
 }
