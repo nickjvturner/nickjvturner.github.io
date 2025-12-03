@@ -1,34 +1,51 @@
 {
-    "version": "25.48.1",
-    "date": "2025-11-27T23:28:47.496351+00:00",
+    "version": "25.49.1",
+    "date": "2025-12-03T10:23:07.745124+00:00",
     "changelog": [
-        "AP Lists now output to a dir called \"AP Lists\" within OUTPUT",
+        "Project Profiles:",
+        "  Breaking changes, re-arranged the example profiles",
+        "  Forced re-seed example profiles (only on update to 25.49.1)",
+        "  AP List columns respect the sequence defined in project profile",
+        "Rename AP Patterns:",
+        "  Forced re-seed Rename AP patterns (only on update to 25.49.1)",
+        "  XLSX export/import",
+        "    Flow requires user interaction with the 'Rename APs' button",
+        "    Prints AP Name mappings to activity console",
         "User Interface:",
-        "  Cleaned up, restructured and emojified most console messages",
-        "  Rename Visualiser button disables when XLSX rename pattern is selected",
-        "  Replaced Asset Creator button row with dropdown selector",
-        "  PDS projects can be created with original maps or PDS maps",
-        "  Centralised and standardised process completion message",
-        "Map Visualiser:",
-        "  Map Visualiser button disables when irrelevant style is selected",
-        "  Sidebar added to hold parameter input boxes and controls",
-        "  Map Style selector added",
-        "  Added ability to step through APs when Zoomed AP style is selected",
-        "  Draw visible square boundary around Zoomed AP in accordance with crop parameter",
-        "  Zoomed AP style control visibility and opacity of 'other APs'",
-        "  Summary of configured parameters printed to activity console on Map Style change / Visualiser close",
-        "Bug Fix:",
-        "  Missing dependency openpyxl added to bundle"
+        "  Many, many activity console messages emojified",
+        "  Effort towards centralising and standardising common function messages",
+        "  Project Profiles and Rename Pattern drop-down auto refresh, removed this action from the menu bar",
+        "Validation:",
+        "  AP name format is now defined within project profile",
+        "  Coverage Requirement Validation",
+        "    Requires the coverage profile to be specified within test token parameters",
+        "  Displays significant parameter matches and values in test results",
+        "  Area Coverage Requirement Assignment",
+        "    Test renamed to be more descriptive",
+        "  Does not jump to the start of test results",
+        "Summarise:",
+        "  Added coverage requirement assignment (simulated and survey)",
+        "  Project data block suppressed in 'My AP Summary' output (survey)",
+        "  Added tag-key total value when tag-value variations are greater than 1",
+        "Asset Creation:",
+        "  AP Location Map generator can run with simulated and/or surveyed AP data.",
+        "  Added Simulated and Survey AP checkboxes to appropriate map styles",
+        "  Added checkbox option for the project name stamp",
+        "  Visualiser lists all map styles",
+        "  Separator line numbers are nudged, so they no longer overlap the line they represent",
+        "License Manager:",
+        "  Window size re-addressed on Windows to try and prevent the 'crushed button' effect",
+        "  Re-worked 'limited mode', app is now more functional when unlicensed"
     ],
-    "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.48.1.dmg",
+    "download_url": "https://downloads.badgerwifi.co.uk/BadgerWiFi-Tools/BadgerWiFi-Tools-25.49.1.dmg",
     "downloads": {
         "mac": {
             "label": "Download for macOS",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.48.1.dmg"
+            "url": "https://downloads.badgerwifi.co.uk/BadgerWiFi-Tools/BadgerWiFi-Tools-25.49.1.dmg"
         },
         "windows": {
             "label": "Download for Windows",
-            "url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.48.1.msi"
+            "url": "https://downloads.badgerwifi.co.uk/BadgerWiFi-Tools/BadgerWiFi-Tools-25.49.1.msi"
         }
     },
     "version_history": [
@@ -211,6 +228,30 @@
                 "  Display total square metres considered in-scope on map"
             ],
             "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.47.3.dmg"
+        },
+        {
+            "version": "25.48.1",
+            "date": "2025-11-27T23:28:47.496351+00:00",
+            "comment": [
+                "AP Lists now output to a dir called \"AP Lists\" within OUTPUT",
+                "User Interface:",
+                "  Cleaned up, restructured and emojified most console messages",
+                "  Rename Visualiser button disables when XLSX rename pattern is selected",
+                "  Replaced Asset Creator button row with dropdown selector",
+                "  PDS projects can be created with original maps or PDS maps",
+                "  Centralised and standardised process completion message",
+                "Map Visualiser:",
+                "  Map Visualiser button disables when irrelevant style is selected",
+                "  Sidebar added to hold parameter input boxes and controls",
+                "  Map Style selector added",
+                "  Added ability to step through APs when Zoomed AP style is selected",
+                "  Draw visible square boundary around Zoomed AP in accordance with crop parameter",
+                "  Zoomed AP style control visibility and opacity of 'other APs'",
+                "  Summary of configured parameters printed to activity console on Map Style change / Visualiser close",
+                "Bug Fix:",
+                "  Missing dependency openpyxl added to bundle"
+            ],
+            "download_url": "https://pub-3c1de6cb1b874f7f958383ac922f62fd.r2.dev/BadgerWiFi-Tools-25.48.1.dmg"
         }
     ]
 }
